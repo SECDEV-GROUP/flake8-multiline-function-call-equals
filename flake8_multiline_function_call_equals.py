@@ -19,7 +19,6 @@ class Visitor(ast.NodeVisitor):
                        }
 
     def visit_Call(self, node):
-        print("HIIIII")  ##
         sofar = node.col_offset+len(node.func.id) + 1  # 1 for the paren
         for keyword in node.keywords:
             if keyword.arg is None:
