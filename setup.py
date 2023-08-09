@@ -15,7 +15,7 @@ from setuptools import find_packages, setup, Command
 NAME = 'flake8-multiline-function-call-equals'
 DESCRIPTION = 'Ensure spaces around `=` in multiline function calls'
 URL = 'https://github.com/SECDEV-GROUP/flake8-multiline-function-call-equals'
-EMAIL = 'me@example.com'
+EMAIL = 'pypi@secdev.com'
 AUTHOR = 'SecDev Group'
 REQUIRES_PYTHON = '>=3.8.0'
 VERSION = '0.1.0'
