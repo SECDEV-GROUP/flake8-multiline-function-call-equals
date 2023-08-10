@@ -8,14 +8,13 @@ class Visitor(ast.NodeVisitor):
         self.problems = []
 
         # messages / Error codes
-        self.errors = {100: "EQA100 Too many whitespaces in single-line function call",
-                       101: "EQA101 Too many whitespaces in multiline function call",
-                       102: "EQA102 Too few whitespaces in multiline function call",
+        self.errors = {100: "EQA100 Too many whitespaces surrounding assignment operator in single-line function call",
+                       101: "EQA101 Too many whitespaces surrounding assignment operator in multiline function call",
+                       102: "EQA102 Too few whitespaces surrounding assignment operator in multiline function call",
                        103: "EQA103 Empty line in multiline function call",
                        104: "EQA104 Multiple arguments on the same line in multiline function call",
                        105: "EQA105 First argument does not start on the call line in multiline function call",
                        106: "EQA106 Closing paren is on the same line as the last argument",
-                       106: "EQA107 Closing paren is on the same line as the last argument",
                        }
 
     def visit_Call(self, node):
