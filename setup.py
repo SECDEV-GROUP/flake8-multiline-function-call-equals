@@ -17,8 +17,8 @@ DESCRIPTION = 'Ensure spaces around `=` in multiline function calls'
 URL = 'https://github.com/SECDEV-GROUP/flake8-multiline-function-call-equals'
 EMAIL = 'pypi@secdev.com'
 AUTHOR = 'SecDev Group'
-REQUIRES_PYTHON = '>=3.8.0'
-VERSION = '0.1.0'
+REQUIRES_PYTHON = '~=3.8'
+VERSION = '0.1.2'
 
 # What packages are required for this module to be executed?
 REQUIRED = ['flake8']
