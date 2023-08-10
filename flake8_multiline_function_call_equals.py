@@ -18,18 +18,25 @@ class Visitor(ast.NodeVisitor):
                        }
 
     def visit_Call(self, node):
-        sofar = node.col_offset+len(node.func.id) + 1  # 1 for the paren
-        for keyword in node.keywords:
+        sofar = node.func.end_col_offset + 1  # +1 for the paren
+
+        for k,keyword in enumerate(node.keywords):
             if keyword.arg is None:
                 continue
 
             if node.end_lineno - node.lineno == 0:  # single-line call
+                if k == 0:
+                    args = node.args
+                    if args:
+                        arg = args[-1]
+                        sofar = arg.end_col_offset + 2  # comma and space
+
                 self.processSingleLineCall(keyword, sofar)
                 sofar = keyword.value.end_col_offset
                 sofar += 2  # comma and space
 
             else:  # multiline call
-                self.processMultiLineCall(keyword, node.col_offset+len(node.func.id)+1)  # +1 for the paren
+                self.processMultiLineCall(keyword, node.func.end_col_offset+1)  # +1 for the paren
 
                 args = node.args + node.keywords
                 for k1,k2 in zip(args, args[1:]):  # check for empty lines
