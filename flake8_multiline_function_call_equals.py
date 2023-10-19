@@ -53,17 +53,27 @@ class Visitor(ast.NodeVisitor):
             # ensure the first argument is on the same line as the function call
             args = node.args + node.keywords
             n = args[0]
-            if getattr(n.value, 'lineno', getattr(n, 'lineno', None)) > node.lineno:
+            if hasattr(n, 'value') and hasattr(n.value, 'lineno'):
+                nlineno = n.value.lineno
+            else:
+                nlineno = n.lineno
+
+            if nlineno > node.lineno:
                 self.problems.append((node.keywords[0].value.lineno, node.keywords[0].value.col_offset, self.errors[105]))
 
             # ensure that the close-paren is on its own line
-            if node.end_lineno == getattr(args[-1].value, 'end_lineno', getattr(args[-1], 'end_lineno', None)):
+            if hasattr(args[-1], 'value') and hasattr(args[-1].value, 'end_lineno'):
+                nendlineno = args[-1].value.end_lineno
+            else:
+                nendlineno = args[-1].end_lineno
+
+            if node.end_lineno==nendlineno and len(node.args)>1:
                 self.problems.append((node.end_lineno, node.end_col_offset, self.errors[106]))
 
             # no blank lines before the closing paren
             if args:
                 larg = args[-1]
-                largLine = getattr(larg.value, 'end_lineno', getattr(larg, 'end_lineno', None))
+                largLine = getattr(larg, 'end_lineno', getattr(getattr(larg, 'value', None), 'end_lineno', None))
             
                 if node.end_lineno > largLine + 1:
                     self.problems.append((node.end_lineno, 0, self.errors[103]))
