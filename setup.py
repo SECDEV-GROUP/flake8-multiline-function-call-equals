@@ -18,7 +18,7 @@ URL = 'https://github.com/SECDEV-GROUP/flake8-multiline-function-call-equals'
 EMAIL = 'pypi@secdev.com'
 AUTHOR = 'SecDev Group'
 REQUIRES_PYTHON = '~=3.8'
-VERSION = '0.1.3'
+VERSION = '0.1.4'
 
 # What packages are required for this module to be executed?
 REQUIRED = ['flake8']
