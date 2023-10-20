@@ -60,7 +60,6 @@ class Visitor(ast.NodeVisitor):
                     nlineno = n.lineno
     
                 if nlineno > node.lineno:
-                    print(args[0].__dict__)  ##
                     lineno = getattr(args[0], 'lineno', getattr(getattr(args[0], 'value', None), 'lineno', None))
                     col = getattr(args[0], 'col_offset', getattr(getattr(args[0], 'value', None), 'col_offset', None))
                     self.problems.append((lineno, col, self.errors[105]))
